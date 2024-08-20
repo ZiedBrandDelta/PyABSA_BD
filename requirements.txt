@@ -1,4 +1,4 @@
-﻿findfile
+﻿#findfile
 autocuda
 metric-visualizer
 boostaug
