@@ -248,9 +248,10 @@ def load_json(file_path, **kwargs):
     with open(file_path, "r", encoding="utf-8") as f:
         # Read the file and parse the JSON string to a dictionary
         data = f.readline().strip()
-        fprint(
-            type(data), data
-        )  # 'fprint' function is not defined, may need to be defined
+        print(" ")
+        # fprint(
+        #     type(data), data
+        # )  # 'fprint' function is not defined, may need to be defined
         dic = json.loads(data)
     return dic
 
@@ -290,7 +291,8 @@ def load_dataset_from_file(fname, config):
         if logger:
             logger.info("Load dataset from {}".format(f))
         else:
-            fprint("Load dataset from {}".format(f))
+            print(" ")
+            #fprint("Load dataset from {}".format(f))
         fin = open(f, "r", encoding="utf-8")
         _lines_ = fin.readlines()
         for i, line in enumerate(_lines_):

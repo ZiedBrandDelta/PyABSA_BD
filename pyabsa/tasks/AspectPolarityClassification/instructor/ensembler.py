@@ -336,3 +336,4 @@ class APCEnsembler(nn.Module):
             logits = outputs[0]["logits"]
             loss = outputs[0]["loss"] if "loss" in outputs[0] else loss
         return {"logits": logits, "loss": loss.to(logits.device)}
+

@@ -41,12 +41,12 @@ def get_logger(log_path, log_name="", log_type="training_log"):
         # File handler.
         file_handler = logging.FileHandler(log_path, encoding="utf8")
         file_handler.setFormatter(formatter)
-        file_handler.setLevel(logging.INFO)
+        file_handler.setLevel(logging.ERROR)
 
         # Console handler.
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.formatter = formatter
-        console_handler.setLevel(logging.INFO)
+        console_handler.setLevel(logging.ERROR)
 
         # Add handlers to logger.
         logger.addHandler(file_handler)

@@ -44,7 +44,8 @@ def query_remote_datasets_version(**kwargs):
             if logger:
                 logger.warning("Failed to query remote version")
             else:
-                fprint(colored("Failed to query remote version", "red"))
+                print(" ")
+                #fprint(colored("Failed to query remote version", "red"))
             return None
     return remote_version
 
@@ -63,8 +64,9 @@ def check_datasets_version(**kwargs):
             logger.info(f"Local dataset version: {local_version}")
             logger.info(f"Remote dataset version: {remote_version}")
         else:
-            fprint(f"Local dataset version: {local_version}")
-            fprint(f"Remote dataset version: {remote_version}")
+            print(" ")
+            #fprint(f"Local dataset version: {local_version}")
+            #fprint(f"Remote dataset version: {remote_version}")
 
         if not remote_version:
             if logger:
@@ -73,25 +75,27 @@ def check_datasets_version(**kwargs):
                     "check the latest version of ABSADatasets at https://github.com/yangheng95/ABSADatasets"
                 )
             else:
-                fprint(
-                    colored(
-                        "Failed to check ABSADatasets version, please"
-                        "check the latest version of ABSADatasets at https://github.com/yangheng95/ABSADatasets",
-                        "red",
-                    )
-                )
+                print(" ")
+                # fprint(
+                #     colored(
+                #         "Failed to check ABSADatasets version, please"
+                #         "check the latest version of ABSADatasets at https://github.com/yangheng95/ABSADatasets",
+                #         "red",
+                #     )
+                # )
         if not local_version:
             if logger:
                 logger.warning(
                     "Failed to check local ABSADatasets version, please make sure you have downloaded the latest version of ABSADatasets."
                 )
             else:
-                fprint(
-                    colored(
-                        "Failed to check local ABSADatasets version, please make sure you have downloaded the latest version of ABSADatasets.",
-                        "red",
-                    )
-                )
+                print(" ")
+                # fprint(
+                #     colored(
+                #         "Failed to check local ABSADatasets version, please make sure you have downloaded the latest version of ABSADatasets.",
+                #         "red",
+                #     )
+                # )
 
         if version.parse(local_version) < version.parse(remote_version):
             if logger:
@@ -99,12 +103,13 @@ def check_datasets_version(**kwargs):
                     "Local ABSADatasets version is lower than remote ABSADatasets version, please upgrade your ABSADatasets."
                 )
             else:
-                fprint(
-                    colored(
-                        "Local ABSADatasets version is lower than remote ABSADatasets version, please upgrade your ABSADatasets.",
-                        "red",
-                    )
-                )
+                print(" ")
+                # fprint(
+                #     colored(
+                #         "Local ABSADatasets version is lower than remote ABSADatasets version, please upgrade your ABSADatasets.",
+                #         "red",
+                #     )
+                # )
 
     except Exception as e:
         if logger:
@@ -114,11 +119,12 @@ def check_datasets_version(**kwargs):
                 )
             )
         else:
-            fprint(
-                colored(
-                    "ABSADatasets version check failed: {}, please check the latest datasets at https://github.com/yangheng95/ABSADatasets manually.".format(
-                        e
-                    ),
-                    "red",
-                )
-            )
+            print(" ")
+            # fprint(
+            #     colored(
+            #         "ABSADatasets version check failed: {}, please check the latest datasets at https://github.com/yangheng95/ABSADatasets manually.".format(
+            #             e
+            #         ),
+            #         "red",
+            #     )
+            # )

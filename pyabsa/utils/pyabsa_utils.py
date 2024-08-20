@@ -62,18 +62,19 @@ def print_args(config, logger=None):
                         )
                     )
             else:
-                try:
-                    fprint(
-                        "{0}:{1}\t-->\tCalling Count:{2}".format(
-                            arg, config.args[arg], config.args_call_count[arg]
-                        )
-                    )
-                except:
-                    fprint(
-                        "{0}:{1}\t-->\tCalling Count:{2}".format(
-                            arg, config.args[arg], 0
-                        )
-                    )
+                continue
+                # try:
+                #     #fprint(
+                #     #    "{0}:{1}\t-->\tCalling Count:{2}".format(
+                #     #        arg, config.args[arg], config.args_call_count[arg]
+                #     #    )
+                #     #)
+                # except:
+                #     #fprint(
+                #     #    "{0}:{1}\t-->\tCalling Count:{2}".format(
+                #     #        arg, config.args[arg], 0
+                #     #    )
+                #     #)
 
 
 def validate_absa_example(text: str, aspect: str, polarity: str, config):
@@ -264,8 +265,8 @@ def set_device(config, auto_device):
         device_name = auto_cuda_name()
     config.device = device
     config.device_name = device_name
-    fprint("Set Model Device: {}".format(device))
-    fprint("Device Name: {}".format(device_name))
+    #fprint("Set Model Device: {}".format(device))
+    #fprint("Device Name: {}".format(device_name))
     return device, device_name
 
 

@@ -36,12 +36,13 @@ class ABSADataset(PyABSADataset):
         )
 
         if len(lines) % 3 != 0 or len(lines) == 0:
-            fprint(
-                colored(
-                    "ERROR: one or more datasets are corrupted, make sure the number of lines in a dataset should be multiples of 3.",
-                    "red",
-                )
-            )
+            print(" ")
+            # fprint(
+            #     colored(
+            #         "ERROR: one or more datasets are corrupted, make sure the number of lines in a dataset should be multiples of 3.",
+            #         "red",
+            #     )
+            # )
 
         all_data = []
         # record polarities type to update output_dim

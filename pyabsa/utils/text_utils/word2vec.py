@@ -67,7 +67,8 @@ def train_word2vec(
         assert isinstance(corpus_files, list)
 
     # load the input corpus
-    fprint("Start loading corpus files:", corpus_files)
+    print(" ")
+    #fprint("Start loading corpus files:", corpus_files)
     if isinstance(pre_tokenizer, str):
         pre_tokenizer = AutoTokenizer.from_pretrained(pre_tokenizer)
     for f in corpus_files:
@@ -80,7 +81,8 @@ def train_word2vec(
                 in_corpus.append(res)
 
     # train the Word2Vec model
-    fprint("Start training word2vec model")
+    print(" ")
+    #fprint("Start training word2vec model")
     start = time.time()
     model = Word2Vec(
         sentences=in_corpus,
@@ -92,13 +94,15 @@ def train_word2vec(
         epochs=epochs,
         **kwargs
     )
-    fprint("Time cost: ", time.time() - start)
+    print(" ")
+    #fprint("Time cost: ", time.time() - start)
 
     model.wv.save_word2vec_format(
         os.path.join(save_path, "word2vec768d.txt"), binary=False
     )  # 不以C语言可以解析的形式存储词向量
     model.save(os.path.join(save_path, "w2v768d.model"))
-    fprint("Word2vec training done ")
+    print(" ")
+    #fprint("Word2vec training done ")
 
 
 if __name__ == "__main__":

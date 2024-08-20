@@ -196,7 +196,8 @@ def get_syntax_distance(text_raw, aspect, tokenizer, config):
     try:
         raw_tokens, dist, max_dist = calculate_dep_dist(text_raw, aspect)
     except Exception as e:
-        fprint("Text: {} Aspect: {}".format(text_raw, aspect))
+        print(" 1")
+        #fprint("Text: {} Aspect: {}".format(text_raw, aspect))
         raise RuntimeError(
             "Ignore failure in calculate the syntax based SRD: {}, maybe the aspect is None".format(
                 e
@@ -384,14 +385,15 @@ def configure_spacy_model(config):
     try:
         nlp = spacy.load(config.spacy_model)
     except:
-        fprint(
-            "Can not load {} from spacy, try to download it in order to parse syntax tree:".format(
-                config.spacy_model
-            ),
-            termcolor.colored(
-                "\npython -m spacy download {}".format(config.spacy_model), "green"
-            ),
-        )
+        pass
+        # fprint(
+        #     "Can not load {} from spacy, try to download it in order to parse syntax tree:".format(
+        #         config.spacy_model
+        #     ),
+        #     termcolor.colored(
+        #         "\npython -m spacy download {}".format(config.spacy_model), "green"
+        #     ),
+        # )
         try:
             os.system("python -m spacy download {}".format(config.spacy_model))
             nlp = spacy.load(config.spacy_model)

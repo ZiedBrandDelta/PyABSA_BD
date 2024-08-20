@@ -59,11 +59,13 @@ def train_bpe_tokenizer(
         corpus_files = [corpus_files]
     else:
         assert isinstance(corpus_files, list)
-    fprint("Start loading corpus files:", corpus_files)
+    print(" ")
+    #fprint("Start loading corpus files:", corpus_files)
 
     tokenizer = ByteLevelBPETokenizer()
     # Customize training
-    fprint("Start training BPE tokenizer")
+    print(" ")
+    #fprint("Start training BPE tokenizer")
     start = time.time()
     tokenizer.train(
         files=corpus_files,
@@ -71,7 +73,8 @@ def train_bpe_tokenizer(
         min_frequency=min_frequency,
         special_tokens=special_tokens,
     )
-    fprint("Time cost: ", time.time() - start)
+    print(" ")
+    #fprint("Time cost: ", time.time() - start)
 
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -86,7 +89,8 @@ def train_bpe_tokenizer(
 
     tokenizer.save(f"{save_path}/tokenizer.json")
     tokenizer.save_model(f"{save_path}/")
-    fprint("BPE tokenizer training done ")
+    print(" ")
+    #fprint("BPE tokenizer training done ")
 
 
 if __name__ == "__main__":
@@ -101,4 +105,5 @@ if __name__ == "__main__":
         "ATAGGCTAGTTCGTGCCAAATATTTCTTAATGAATACAATTCAGATAGATGTTTACTGCAGAGTTATTTTTTGAGCTTTGGTTGCTGGTAGTAGTC"
         "GCCAATTCCAGAAATTGTGGTTTTAGGATCCTCTCAGTTTTATAAATTCAAGCAGTGATTCTTTCCTTGAAGATTTATGTTCCGTCTAAGTAGTTCAAAGGTTTTGTATATTTATACTGCTCTTATTATCTTTCTTTTTTGAAATTGCAG"
     )
-    fprint(output)
+    print(" ")
+    #fprint(output)

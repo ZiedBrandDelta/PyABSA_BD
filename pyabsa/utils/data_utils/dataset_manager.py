@@ -103,11 +103,12 @@ def detect_dataset(
                             + " please check your network connection."
                         )
                     else:
-                        fprint(
-                            "Exception: {}. Fail to download dataset from".format(e)
-                            + " https://github.com/yangheng95/ABSADatasets,"
-                            + " please check your network connection."
-                        )
+                        print(" ")
+                        # fprint(
+                        #     "Exception: {}. Fail to download dataset from".format(e)
+                        #     + " https://github.com/yangheng95/ABSADatasets,"
+                        #     + " please check your network connection."
+                        # )
                     download_dataset_by_name(logger, task_code, dataset_name=d)
 
             search_path = findfile.find_dir(
@@ -217,9 +218,10 @@ def detect_dataset(
                 )
 
         else:
-            fprint(
-                "Try to load {} dataset from local disk".format(dataset_name_or_path)
-            )
+            print(" ")
+            #fprint(
+            #   "Try to load {} dataset from local disk".format(dataset_name_or_path)
+            #)
             if load_aug:
                 dataset_file["train"] += findfile.find_files(
                     d,
@@ -274,12 +276,13 @@ def detect_dataset(
 
     if len(dataset_file["train"]) == 0:
         if os.path.isdir(d) or os.path.isdir(search_path):
-            fprint(
-                "No train set found from: {}, detected files: {}".format(
-                    dataset_name_or_path,
-                    ", ".join(os.listdir(d) + os.listdir(search_path)),
-                )
-            )
+            print(" ")
+            # fprint(
+            #     "No train set found from: {}, detected files: {}".format(
+            #         dataset_name_or_path,
+            #         ", ".join(os.listdir(d) + os.listdir(search_path)),
+            #     )
+            # )
         raise RuntimeError(
             'Fail to locate dataset: {}. Your dataset should be in "datasets" folder end withs ".apc" or ".atepc" or "tc". If the error persists, '
             "you may need rename your dataset according to {}".format(
@@ -324,7 +327,8 @@ def detect_infer_dataset(
                 if logger:
                     logger.info("Try to load {} dataset from local disk".format(d))
                 else:
-                    fprint("Try to load {} dataset from local disk".format(d))
+                    print(" ")
+                    #fprint("Try to load {} dataset from local disk".format(d))
             else:
                 if logger:
                     logger.info(
@@ -333,11 +337,12 @@ def detect_infer_dataset(
                         )
                     )
                 else:
-                    fprint(
-                        "Try to download {} dataset from https://github.com/yangheng95/ABSADatasets".format(
-                            d
-                        )
-                    )
+                    print(" ")
+                    # fprint(
+                    #     "Try to download {} dataset from https://github.com/yangheng95/ABSADatasets".format(
+                    #         d
+                    #     )
+                    # )
                 try:
                     download_all_available_datasets(logger=logger)
                 except Exception as e:
@@ -347,10 +352,11 @@ def detect_infer_dataset(
                         )
                         logger.info("Try to load {} dataset from Huggingface".format(d))
                     else:
-                        fprint(
-                            "Fail to download dataset from https://github.com/yangheng95/ABSADatasets, please check your network connection"
-                        )
-                        fprint("Try to load {} dataset from Huggingface".format(d))
+                        print(" ")
+                        # fprint(
+                        #     "Fail to download dataset from https://github.com/yangheng95/ABSADatasets, please check your network connection"
+                        # )
+                        # fprint("Try to load {} dataset from Huggingface".format(d))
                     download_dataset_by_name(
                         logger=logger, task_code=task_code, dataset_name=d
                     )
@@ -373,12 +379,13 @@ def detect_infer_dataset(
 
     if len(dataset_file) == 0:
         if os.path.isdir(dataset_name_or_path.dataset_name):
-            fprint(
-                "No inference set found from: {}, unrecognized files: {}".format(
-                    dataset_name_or_path,
-                    ", ".join(os.listdir(dataset_name_or_path.dataset_name)),
-                )
-            )
+            print(" ")
+            # fprint(
+            #     "No inference set found from: {}, unrecognized files: {}".format(
+            #         dataset_name_or_path,
+            #         ", ".join(os.listdir(dataset_name_or_path.dataset_name)),
+            #     )
+            # )
         raise RuntimeError(
             "Fail to locate dataset: {}. If you are using your own dataset, you may need rename your dataset according to {}".format(
                 dataset_name_or_path,
@@ -386,12 +393,13 @@ def detect_infer_dataset(
             )
         )
     if len(dataset_name_or_path) > 1:
-        fprint(
-            colored(
-                "Please DO NOT mix datasets with different sentiment labels for trainer & inference !",
-                "yellow",
-            )
-        )
+        print(" ")
+        # fprint(
+        #     colored(
+        #         "Please DO NOT mix datasets with different sentiment labels for trainer & inference !",
+        #         "yellow",
+        #     )
+        # )
 
     return dataset_file
 
@@ -414,23 +422,26 @@ def download_all_available_datasets(**kwargs):
                     "Force download datasets from https://github.com/yangheng95/ABSADatasets"
                 )
             else:
-                fprint(
-                    "Force download datasets from https://github.com/yangheng95/ABSADatasets"
-                )
+                print(" ")
+                # fprint(
+                #     "Force download datasets from https://github.com/yangheng95/ABSADatasets"
+                # )
         else:
             if logger:
                 logger.info(
                     "Datasets already exist in {}, skip download".format(save_path)
                 )
             else:
-                fprint("Datasets already exist in {}, skip download".format(save_path))
+                print(" ")
+                #fprint("Datasets already exist in {}, skip download".format(save_path))
             return
 
     with tempfile.TemporaryDirectory() as tmpdir:
         try:
-            fprint(
-                "Clone ABSADatasets from https://github.com/yangheng95/ABSADatasets.git"
-            )
+            print(" ")
+            # fprint(
+            #     "Clone ABSADatasets from https://github.com/yangheng95/ABSADatasets.git"
+            # )
             git.Repo.clone_from(
                 "https://github.com/yangheng95/ABSADatasets.git",
                 tmpdir,
@@ -444,9 +455,10 @@ def download_all_available_datasets(**kwargs):
                 pass
         except Exception as e:
             try:
-                fprint(
-                    "Clone ABSADatasets from https://gitee.com/yangheng95/ABSADatasets.git"
-                )
+                print(" ")
+                # fprint(
+                #     "Clone ABSADatasets from https://gitee.com/yangheng95/ABSADatasets.git"
+                # )
                 git.Repo.clone_from(
                     "https://gitee.com/yangheng95/ABSADatasets.git",
                     tmpdir,
@@ -461,14 +473,15 @@ def download_all_available_datasets(**kwargs):
                 except IOError as e:
                     pass
             except Exception as e:
-                fprint(
-                    colored(
-                        "Exception: {}. Fail to clone ABSADatasets, please check your connection".format(
-                            e
-                        ),
-                        "red",
-                    )
-                )
+                print(" ")
+                # fprint(
+                #     colored(
+                #         "Exception: {}. Fail to clone ABSADatasets, please check your connection".format(
+                #             e
+                #         ),
+                #         "red",
+                #     )
+                # )
                 time.sleep(3)
                 download_all_available_datasets(**kwargs)
 
@@ -526,11 +539,12 @@ def download_dataset_by_name(
                 )
             )
         else:
-            fprint(
-                colored(
-                    "Exception: {}. Fail to download dataset from {}. Please check your connection".format(
-                        e, url
-                    ),
-                    "red",
-                )
-            )
+            print(" ")
+            # fprint(
+            #     colored(
+            #         "Exception: {}. Fail to download dataset from {}. Please check your connection".format(
+            #             e, url
+            #         ),
+            #         "red",
+            #     )
+            # )

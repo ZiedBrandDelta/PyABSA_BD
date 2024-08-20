@@ -24,9 +24,9 @@ def generate_inference_set_for_apc(dataset_path):
     Generate inference set for APC dataset. This function only works for APC datasets located in integrated_datasets.
     """
     # Print a message for the user to ensure that the dataset is located in integrated_datasets
-    fprint(
-        "To ensure your generation is successful, make sure your dataset is located in integrated_datasets."
-    )
+    #fprint(
+    #    "To ensure your generation is successful, make sure your dataset is located in integrated_datasets."
+    #)
     # If dataset_path is a DatasetItem object, get the dataset_name attribute
     if isinstance(dataset_path, DatasetItem):
         dataset_name = dataset_path.dataset_name
@@ -92,11 +92,12 @@ def generate_inference_set_for_apc(dataset_path):
                 fout.write(sample + " $LABEL$ " + lines[i + 2].strip() + "\n")
             fout.close()
             # Print the path to the saved inference set
-            fprint("save in: {}".format(path_to_save))
+            #fprint("save in: {}".format(path_to_save))
         except:
-            fprint("Unprocessed file:", file)
+            print(" ")
+            #fprint("Unprocessed file:", file)
     # Print a message to indicate that the inference set generation has finished
-    fprint("Inference set generation finished")
+    #fprint("Inference set generation finished")
 
 
 def is_similar(s1: str, s2: str) -> bool:
@@ -187,7 +188,8 @@ def assemble_aspects(fname, use_tokenizer=False):
                         tags[i] = "I-ASP"
                 samples.append([text, tags, polarities_tmp])
             except:
-                fprint("Ignore Error:", sample[0])
+                print(" ")
+                #fprint("Ignore Error:", sample[0])
 
         return samples
 
@@ -244,7 +246,7 @@ def convert_atepc(fname, use_tokenizer):
     :param use_tokenizer: whether to use a tokenizer
     """
 
-    fprint("coverting {} to {}.atepc".format(fname, fname))
+    #fprint("coverting {} to {}.atepc".format(fname, fname))
     dist_fname = fname.replace("apc_datasets", "atepc_datasets")
 
     if not os.path.exists(os.path.dirname(dist_fname)) and not os.path.isfile(
@@ -277,9 +279,9 @@ def convert_apc_set_to_atepc_set(path, use_tokenizer=False):
     :param path: path to the dataset
     :param use_tokenizer: whether to use a tokenizer
     """
-    fprint(
-        'To ensure your conversion is successful, make sure the dataset name contain "apc" and "dataset" string '
-    )
+    #fprint(
+    #    'To ensure your conversion is successful, make sure the dataset name contain "apc" and "dataset" string '
+    #)
 
     if isinstance(path, DatasetItem):
         path = path.dataset_name
@@ -297,16 +299,19 @@ def convert_apc_set_to_atepc_set(path, use_tokenizer=False):
             exclude_key=[".inference", "readme"],
         )
 
-    fprint("Find datasets files at {}:".format(path))
+    #fprint("Find datasets files at {}:".format(path))
     for target_file in files:
         if not target_file.endswith(".atepc"):
             try:
                 convert_atepc(target_file, use_tokenizer)
             except Exception as e:
-                fprint("failed to process :{}, Exception: {}".format(target_file, e))
+                print(" ")
+                #fprint("failed to process :{}, Exception: {}".format(target_file, e))
         else:
-            fprint("Ignore ", target_file)
-    fprint("finished")
+            print(" ")
+            #fprint("Ignore ", target_file)
+    print("Finished")
+    #fprint("finished")
 
 
 def refactor_chinese_dataset(fname, train_fname, test_fname):
@@ -336,7 +341,7 @@ def refactor_chinese_dataset(fname, train_fname, test_fname):
         else:
             negative += 1
         sum_ += 1
-    fprint(train_fname + f"sum={sum_} positive={positive} negative={negative}")
+    #fprint(train_fname + f"sum={sum_} positive={positive} negative={negative}")
     if os.path.exists(test_fname):
         os.remove(test_fname)
     fout = open(test_fname, "w", encoding="utf8")
@@ -362,7 +367,7 @@ def refactor_chinese_dataset(fname, train_fname, test_fname):
         else:
             negative += 1
         sum_ += 1
-    fprint(train_fname + f"sum={sum_} positive={positive} negative={negative}")
+    #fprint(train_fname + f"sum={sum_} positive={positive} negative={negative}")
     if os.path.exists(train_fname):
         os.remove(train_fname)
     fout = open(train_fname, "w", encoding="utf8")
@@ -384,5 +389,6 @@ def detect_error_in_dataset(dataset):
             if is_similar(lines[i], lines[i + 3]) and len(
                 (lines[i] + " " + lines[i + 1]).split()
             ) != len((lines[i + 3] + " " + lines[i + 4]).split()):
-                fprint(lines[i].replace("$T$", lines[i + 1].replace("\n", "")))
-                fprint(lines[i + 3].replace("$T$", lines[i + 4].replace("\n", "")))
+                print(" ")
+                #fprint(lines[i].replace("$T$", lines[i + 1].replace("\n", "")))
+                #fprint(lines[i + 3].replace("$T$", lines[i + 4].replace("\n", "")))

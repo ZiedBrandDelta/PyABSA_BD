@@ -91,7 +91,8 @@ def prepare_dependency_graph(dataset_list, graph_path, max_seq_len, config):
 
     for filename in dataset_list:
         try:
-            fprint("parsing dependency matrix:", filename)
+            
+            #fprint("parsing dependency matrix:", filename)
             fin = open(filename, "r", encoding="utf-8", newline="\n", errors="ignore")
             lines = fin.readlines()
             fin.close()
@@ -108,8 +109,9 @@ def prepare_dependency_graph(dataset_list, graph_path, max_seq_len, config):
                 text = text_left + " " + aspect + " " + text_right
                 idx2graph[text.lower()] = adj_matrix
         except Exception as e:
-            fprint(e)
-            fprint("unprocessed:", filename)
+            pass
+            #fprint(e)
+            #fprint("unprocessed:", filename)
     pickle.dump(idx2graph, fout)
     fout.close()
     return graph_path

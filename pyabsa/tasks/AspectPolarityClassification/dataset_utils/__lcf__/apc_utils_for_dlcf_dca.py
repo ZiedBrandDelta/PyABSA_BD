@@ -161,7 +161,8 @@ def get_dynamic_cdw_vec(
             try:
                 assert 0 <= w <= 1  # exception
             except:
-                fprint("Warning! invalid CDW weight:", w)
+                pass
+                #fprint("Warning! invalid CDW weight:", w)
             cdw_vec[i] = 1
     return cdw_vec
 
@@ -206,14 +207,15 @@ def configure_dlcf_spacy_model(config):
     try:
         nlp = spacy.load(config.spacy_model)
     except:
-        fprint(
-            "Can not load {} from spacy, try to download it in order to parse syntax tree:".format(
-                config.spacy_model
-            ),
-            termcolor.colored(
-                "\npython -m spacy download {}".format(config.spacy_model), "green"
-            ),
-        )
+        pass
+        # fprint(
+        #     "Can not load {} from spacy, try to download it in order to parse syntax tree:".format(
+        #         config.spacy_model
+        #     ),
+        #     termcolor.colored(
+        #         "\npython -m spacy download {}".format(config.spacy_model), "green"
+        #     ),
+        # )
         try:
             os.system("python -m spacy download {}".format(config.spacy_model))
             nlp = spacy.load(config.spacy_model)

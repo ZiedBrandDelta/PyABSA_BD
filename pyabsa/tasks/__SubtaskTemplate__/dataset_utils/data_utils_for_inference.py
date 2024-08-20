@@ -53,16 +53,18 @@ def parse_sample(text):
                 sample += f"$LABEL${ref_sent[i]}"
                 samples.append(sample.replace("[TEMP]", "[ASP]"))
             else:
-                fprint(
-                    f"Warning: reference sentiment does not exist or its number {len(ref_sent)} "
-                    f"is not equal to aspect number {len(aspects)}, text: {_text}"
-                )
+                print("Nada")
+                #fprint(
+                #    f"Warning: reference sentiment does not exist or its number {len(ref_sent)} "
+                #    f"is not equal to aspect number {len(aspects)}, text: {_text}"
+                #)
                 samples.append(sample.replace("[TEMP]", "[ASP]"))
 
     else:
-        fprint(
-            "[ASP] tag is detected, please use [B-ASP] and [E-ASP] to annotate aspect terms."
-        )
+        print("Nada 2")
+        #fprint(
+        #    "[ASP] tag is detected, please use [B-ASP] and [E-ASP] to annotate aspect terms."
+        #)
         splits = text.split("[ASP]")
         ref_sent = ref_sent.split(",") if ref_sent else []
 
@@ -79,10 +81,11 @@ def parse_sample(text):
             # if not ref_sent:
             #     fprint(_text, ' -> No the reference sentiment found')
             if ref_sent:
-                fprint(
-                    _text,
-                    " -> Unequal length of reference sentiment and aspects, ignore the reference sentiment.",
-                )
+                print(" ")
+                # fprint(
+                #     _text,
+                #     " -> Unequal length of reference sentiment and aspects, ignore the reference sentiment.",
+                # )
 
             for i in range(0, len(splits) - 1, 2):
                 sample = text.replace(
@@ -256,17 +259,19 @@ class ABSAInferenceDataset(Dataset):
 
             except Exception as e:
                 if ignore_error:
-                    fprint(
-                        "Ignore error while processing: {} Error info:{}".format(
-                            text, e
-                        )
-                    )
+                    print(" ")
+                    # fprint(
+                    #     "Ignore error while processing: {} Error info:{}".format(
+                    #         text, e
+                    #     )
+                    # )
                 else:
-                    raise RuntimeError(
-                        "Ignore error while processing: {} Catch Exception: {}, use ignore_error=True to remove error samples.".format(
-                            text, e
-                        )
-                    )
+                    print(" ")
+                    # raise RuntimeError(
+                    #     "Ignore error while processing: {} Catch Exception: {}, use ignore_error=True to remove error samples.".format(
+                    #         text, e
+                    #     )
+                    # )
 
         all_data = build_sentiment_window(
             all_data,

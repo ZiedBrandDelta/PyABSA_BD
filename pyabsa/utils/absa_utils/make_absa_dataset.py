@@ -48,8 +48,9 @@ def make_ABSA_dataset(dataset_name_or_path, checkpoint="english"):
     if fs:
         aspect_extractor = AspectExtractor(checkpoint=checkpoint)
     else:
-        fprint('No files found! Please make sure your dataset names end with ".ignore"')
-    fprint("Start processing dataset: " + colored(dataset_name_or_path, "green"))
+        print(" ")
+        #fprint('No files found! Please make sure your dataset names end with ".ignore"')
+    #fprint("Start processing dataset: " + colored(dataset_name_or_path, "green"))
     for f in fs:
         with open(f, mode="r", encoding="utf8") as f_in:
             lines = f_in.readlines()
@@ -100,10 +101,10 @@ def make_ABSA_dataset(dataset_name_or_path, checkpoint="english"):
                                 )
                         f_atepc_out.write("\n")
 
-    fprint("APC and ATEPC Datasets built for {}!".format(" ".join(fs)))
-    fprint(
-        colored(
-            "You may need add ID for your dataset, and move the generated datasets to integrated_dataset/apc_datasets and integrated_dataset/atepc_datasets, respectively",
-            "red",
-        )
-    )
+    #fprint("APC and ATEPC Datasets built for {}!".format(" ".join(fs)))
+    #fprint(
+    #    colored(
+    #        "You may need add ID for your dataset, and move the generated datasets to integrated_dataset/apc_datasets and integrated_dataset/atepc_datasets, respectively",
+    #        "red",
+    #    )
+    #)

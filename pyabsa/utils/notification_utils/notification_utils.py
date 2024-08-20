@@ -30,7 +30,8 @@ def check_emergency_notification():
             for chunk in response.iter_content(chunk_size=1024):
                 f.write(chunk)
         with open(save_path, "r") as f:
-            fprint(colored("PyABSA({}): ".format(pyabsa_version) + f.read(), "red"))
+            print(" ")
+            #fprint(colored("PyABSA({}): ".format(pyabsa_version) + f.read(), "red"))
         os.remove(save_path)
     except Exception as e:
         pass

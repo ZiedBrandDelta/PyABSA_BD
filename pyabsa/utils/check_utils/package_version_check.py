@@ -44,12 +44,13 @@ def validate_pyabsa_version():
         versions = list(data["releases"].keys())
         versions.sort(key=parse_version, reverse=True)
         if current_version not in versions:
-            fprint(
-                colored(
-                    "You are using a DEPRECATED or TEST version of PyABSA. Consider update using pip install -U pyabsa!",
-                    "red",
-                )
-            )
+            print(" ")
+            # fprint(
+            #     colored(
+            #         "You are using a DEPRECATED or TEST version of PyABSA. Consider update using pip install -U pyabsa!",
+            #         "red",
+            #     )
+            # )
 
 
 @time_out(10)
@@ -65,8 +66,9 @@ def query_release_notes(**kwargs):
             logger.info("Release note: ")
             logger.info(release_note)
         else:
-            fprint("Release note: ")
-            fprint(release_note[current_version])
+            print(" ")
+            #fprint("Release note: ")
+            #fprint(release_note[current_version])
     except Exception as e:
         try:
             release_url = (
@@ -86,15 +88,16 @@ def query_release_notes(**kwargs):
                     )
                 )
             else:
-                fprint(
-                    colored(
-                        "Failed to query release notes, "
-                        "please check the latest version of PyABSA at {}".format(
-                            release_url
-                        ),
-                        "red",
-                    )
-                )
+                print(" ")
+                # fprint(
+                #     colored(
+                #         "Failed to query release notes, "
+                #         "please check the latest version of PyABSA at {}".format(
+                #             release_url
+                #         ),
+                #         "red",
+                #     )
+                # )
 
 
 @time_out(10)
@@ -104,7 +107,8 @@ def check_pyabsa_update():
         check_result = checker.check(__name__, current_version)
 
         if check_result:
-            fprint(check_result)
+            #fprint(check_result)
             query_release_notes()
     except Exception as e:
-        fprint("Failed to check update for {}, error: {}".format(__name__, e))
+        print(" ")
+        #fprint("Failed to check update for {}, error: {}".format(__name__, e))

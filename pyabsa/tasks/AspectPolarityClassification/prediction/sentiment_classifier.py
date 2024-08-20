@@ -53,7 +53,8 @@ class SentimentClassifier(InferenceModel):
                     raise ValueError(
                         "Do not support to directly load a fine-tuned model, please load a .state_dict or .model instead!"
                     )
-                fprint("Load sentiment classifier from", self.checkpoint)
+                pass
+                #fprint("Load sentiment classifier from", self.checkpoint)
 
                 state_dict_path = find_file(
                     self.checkpoint, ".state_dict", exclude_key=["__MACOSX"]
@@ -97,7 +98,8 @@ class SentimentClassifier(InferenceModel):
                 self.tokenizer = self.config.tokenizer
 
                 if kwargs.get("verbose", False):
-                    fprint("Config used in Training:")
+                    pass
+                    #fprint("Config used in Training:")
                     print_args(self.config)
 
             except Exception as e:
@@ -436,22 +438,25 @@ class SentimentClassifier(InferenceModel):
                             " --> <perplexity:{}>".format(result["perplexity"]),
                             "yellow",
                         )
-                    fprint("Example {}: {}".format(ex_id, text_printing))
+                    #print("10")
+                    #fprint("Example {}: {}".format(ex_id, text_printing))
             if save_path:
                 with open(save_path, "w", encoding="utf8") as fout:
                     json.dump(str(results), fout, ensure_ascii=False)
-                    fprint("inference result saved in: {}".format(save_path))
+                    #print("10")
+                    #fprint("inference result saved in: {}".format(save_path))
         except Exception as e:
             fprint("Can not save result: {}, Exception: {}".format(text_raw, e))
 
         if len(results) > 1:
-            fprint("Total samples:{}".format(n_total))
-            fprint("Labeled samples:{}".format(n_labeled))
-            fprint(
-                "Prediction Accuracy:{}%".format(
-                    100 * n_correct / n_labeled if n_labeled else "N.A."
-                )
-            )
+            pass
+            #fprint("Total samples:{}".format(n_total))
+            #fprint("Labeled samples:{}".format(n_labeled))
+            #fprint(
+            #    "Prediction Accuracy:{}%".format(
+            #        100 * n_correct / n_labeled if n_labeled else "N.A."
+            #    )
+            #)
 
             try:
                 report = metrics.classification_report(

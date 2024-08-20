@@ -158,11 +158,12 @@ class BERTABSAInferenceDataset(ABSAInferenceDataset):
 
             except Exception as e:
                 if ignore_error:
-                    fprint(
-                        "Ignore error while processing: {} Error info:{}".format(
-                            text, e
-                        )
-                    )
+                    pass
+                    # fprint(
+                    #     "Ignore error while processing: {} Error info:{}".format(
+                    #         text, e
+                    #     )
+                    # )
                 else:
                     raise RuntimeError(
                         "Catch Exception: {}, use ignore_error=True to remove error samples.".format(
