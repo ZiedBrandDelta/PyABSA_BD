@@ -9,7 +9,7 @@
 
 import os
 
-import findfile
+#import findfile
 from termcolor import colored
 
 from pyabsa.tasks.AspectTermExtraction.prediction.aspect_extractor import (
@@ -36,15 +36,17 @@ def make_ABSA_dataset(dataset_name_or_path, checkpoint="english"):
     from pyabsa import LabelPaddingOption
 
     if os.path.isdir(dataset_name_or_path):
-        fs = findfile.find_files(
-            dataset_name_or_path, and_key=[".ignore"], exclude_key=[".apc", ".atepc"]
-        )
+        print(" ")
+        #fs = findfile.find_files(
+        #    dataset_name_or_path, and_key=[".ignore"], exclude_key=[".apc", ".atepc"]
+        #)
     elif os.path.isfile(dataset_name_or_path):
         fs = [dataset_name_or_path]
     else:
-        fs = findfile.find_cwd_files(
-            [dataset_name_or_path, ".dat"], exclude_key=[".apc", ".atepc"]
-        )
+        print(" ")
+        #fs = findfile.find_cwd_files(
+        #    [dataset_name_or_path, ".dat"], exclude_key=[".apc", ".atepc"]
+        #)
     if fs:
         aspect_extractor = AspectExtractor(checkpoint=checkpoint)
     else:
