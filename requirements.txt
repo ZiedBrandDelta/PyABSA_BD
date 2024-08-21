@@ -1,6 +1,6 @@
 ﻿#findfile
 autocuda
-metric-visualizer
+#metric-visualizer
 boostaug
 spacy
 networkx
