@@ -15,7 +15,7 @@ from typing import Union
 
 import torch
 import transformers
-from metric_visualizer import MetricVisualizer
+#from metric_visualizer import MetricVisualizer
 from torch import cuda
 from transformers import AutoConfig
 
@@ -92,12 +92,7 @@ def init_config(config):
 
     # create a MetricVisualizer object for logging metrics during training
     if "MV" not in config.args:
-        config.MV = MetricVisualizer(
-            name=config.model.__name__ + "-" + config.dataset_name,
-            trial_tag="Model & Dataset",
-            trial_tag_list=[config.model.__name__ + "-" + config.dataset_name],
-        )
-
+        print(" ")
     # set checkpoint save mode and run config checks
     checkpoint_save_mode = config.checkpoint_save_mode
     config.save_mode = checkpoint_save_mode
