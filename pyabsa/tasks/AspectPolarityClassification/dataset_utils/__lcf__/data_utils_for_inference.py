@@ -53,18 +53,18 @@ def parse_sample(text):
                 sample += f"$LABEL${ref_sent[i]}"
                 samples.append(sample.replace("[TEMP]", "[ASP]"))
             else:
-                pass
-                # fprint(
-                #     f"Warning: reference sentiment does not exist or its number {len(ref_sent)} "
-                #     f"is not equal to aspect number {len(aspects)}, text: {_text}"
-                # )
+                #pass
+                fprint(
+                     f"Warning: reference sentiment does not exist or its number {len(ref_sent)} "
+                     f"is not equal to aspect number {len(aspects)}, text: {_text}"
+                 )
                 samples.append(sample.replace("[TEMP]", "[ASP]"))
 
     else:
-        pass
-        # fprint(
-        #     "[ASP] tag is detected, please use [B-ASP] and [E-ASP] to annotate aspect terms."
-        # )
+        #pass
+        fprint(
+             "[ASP] tag is detected, please use [B-ASP] and [E-ASP] to annotate aspect terms."
+        )
         splits = text.split("[ASP]")
         ref_sent = ref_sent.split(",") if ref_sent else []
 
@@ -78,14 +78,14 @@ def parse_sample(text):
                 sample += " $LABEL$ " + str(ref_sent[int(i / 2)])
                 samples.append(sample.replace("[TEMP]", "[ASP]"))
         elif not ref_sent or int((len(splits) - 1) / 2) != len(ref_sent):
-            # if not ref_sent:
-            #     fprint(_text, ' -> No the reference sentiment found')
+            if not ref_sent: #comment this 
+                 fprint(_text, ' -> No the reference sentiment found')
             if ref_sent:
-                pass
-                # fprint(
-                #     _text,
-                #     " -> Unequal length of reference sentiment and aspects, ignore the reference sentiment.",
-                # )
+                #pass
+                 fprint(
+                     _text,
+                     " -> Unequal length of reference sentiment and aspects, ignore the reference sentiment.",
+                 )
 
             for i in range(0, len(splits) - 1, 2):
                 sample = text.replace(
@@ -259,12 +259,12 @@ class ABSAInferenceDataset(Dataset):
 
             except Exception as e:
                 if ignore_error:
-                    pass
-                    # fprint(
-                    #     "Ignore error while processing: {} Error info:{}".format(
-                    #         text, e
-                    #     )
-                    # )
+                    #pass
+                     fprint(
+                         "Ignore error while processing: {} Error info:{}".format(
+                             text, e
+                         )
+                     )
                 else:
                     raise RuntimeError(
                         "Ignore error while processing: {} Catch Exception: {}, use ignore_error=True to remove error samples.".format(

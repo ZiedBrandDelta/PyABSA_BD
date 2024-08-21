@@ -265,8 +265,8 @@ def set_device(config, auto_device):
         device_name = auto_cuda_name()
     config.device = device
     config.device_name = device_name
-    #fprint("Set Model Device: {}".format(device))
-    #fprint("Device Name: {}".format(device_name))
+    fprint("Set Model Device: {}".format(device))
+    fprint("Device Name: {}".format(device_name))
     return device, device_name
 
 
