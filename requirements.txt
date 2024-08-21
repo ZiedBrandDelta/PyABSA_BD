@@ -31,4 +31,3 @@ requests
 packaging
 setuptools
 gradio
-nltk
